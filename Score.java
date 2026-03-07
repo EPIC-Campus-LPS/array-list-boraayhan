@@ -7,11 +7,18 @@ public class Score {
         this.score = score;
     }
 
-
     public String toString() {
         return "Score{" +
                 "name='" + name + '\'' +
                 ", score=" + score +
                 '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
