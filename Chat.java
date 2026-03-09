@@ -2,11 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Chat {
-    private ArrayList<String> inputs;
-
-    Chat() {
-        //
+public static class Chat {
+    static void run() {
         Scanner input = new Scanner(System.in);
         ArrayList<String> inps = new ArrayList<String>();
         while (true) {
@@ -17,6 +14,27 @@ public class Chat {
             }
             String[] parts = sentence.split(" ");
             inps.addAll(Arrays.asList(parts)); // suggestion from inteellij autoreplace
+
+        }
+        System.out.println("Chat Report:");
+        System.out.println("You used " + inps.size() + " words.");
+        System.out.println("You used " + countUniqueWords(inps) + " words.");
+        System.out.println("You used 'the'' " + getTheCount(inps) + " words.");
+        System.out.println("'" + getLongestWord(inps) + "' was the longest word.");
+        System.out.print("All words are ");
+        if (!areAllWordsLowercase(inps)) {
+            System.out.print("not ");
+        }
+        System.out.println("lowercase.");
+        System.out.println("Condensed Chat History: ");
+        ArrayList<String> uniqueList = new ArrayList<String>();
+        for (String word : inps) {
+            if (!uniqueList.contains(word)) {
+                uniqueList.add(word);
+                if (word.length() > 3) {
+                    System.out.println(word);
+                }
+            }
         }
     }
 
@@ -66,4 +84,9 @@ public class Chat {
         }
         return unique.size();
     }
+}
+
+
+public static void main(String[] args) {
+    Chat.run();
 }
